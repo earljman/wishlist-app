@@ -56,3 +56,6 @@ Thumbs.db
 # Replit files
 .replit
 replit.nix
+
+# Development assets (conversation screenshots)
+attached_assets/
