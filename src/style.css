@@ -191,32 +191,48 @@ body {
   margin-bottom: 16px;
 }
 
-.budget-input {
-  width: 100%;
-  padding: 10px 12px;
+.budget-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
   border: 1px solid #d3af86;
   border-radius: 2px;
-  font-size: 16px;
-  margin-bottom: 8px;
   background: #fdf6e3;
-  color: #657b83;
-  font-family: 'JetBrains Mono', monospace;
 }
 
-.budget-input:focus {
-  outline: none;
+.budget-input-wrapper:focus-within {
   border-color: #268bd2;
   background: #fffbf2;
 }
 
-.budget-display {
-  text-align: center;
+.budget-label {
+  font-family: 'Gambetta', Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #657b83;
+}
+
+.budget-input-combined {
+  border: none;
+  background: transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  color: #268bd2;
+  width: 80px;
+  text-align: right;
+}
+
+.budget-input-combined:focus {
+  outline: none;
+}
+
+.budget-formatted {
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
   color: #16a34a;
-  border-top: 1px solid #ddd6c1;
-  padding-top: 8px;
 }
 
 /* Professional button styling */

@@ -14,14 +14,16 @@
 
     <!-- Budget Section -->
     <div class="budget-section">
-      <input 
-        v-model.number="budget" 
-        type="number" 
-        placeholder="Enter your budget (PHP)"
-        class="budget-input"
-        @input="updateBudgetVisualization"
-      >
-      <div class="budget-display">Budget: ₱{{ budget.toLocaleString() }}</div>
+      <div class="budget-input-wrapper">
+        <span class="budget-label">Budget:</span>
+        <input 
+          v-model.number="budget" 
+          type="number" 
+          class="budget-input-combined"
+          @input="updateBudgetVisualization"
+        >
+        <span class="budget-formatted">₱{{ budget.toLocaleString() }}</span>
+      </div>
     </div>
 
     <!-- Main Content -->
