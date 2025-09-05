@@ -60,9 +60,31 @@
             </div>
           </div>
         </div>
-        <button class="add-item" @click="showAddItemDialog">
+        <button class="add-item" @click="toggleAddForm">
           + Add Item
         </button>
+        
+        <!-- Add Item Form -->
+        <div v-if="showAddForm" class="add-item-form">
+          <input 
+            v-model="newItemName" 
+            type="text" 
+            placeholder="Item name"
+            class="form-input"
+            @keyup.enter="addNewItem"
+          >
+          <input 
+            v-model.number="newItemPrice" 
+            type="number" 
+            placeholder="Price (PHP)"
+            class="form-input"
+            @keyup.enter="addNewItem"
+          >
+          <div class="form-buttons">
+            <button @click="addNewItem" class="btn-add">Add</button>
+            <button @click="cancelAddForm" class="btn-cancel">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -78,6 +100,9 @@ export default {
       budget: 10000,
       selectedCategory: 'groceries',
       selectedItem: null,
+      showAddForm: false,
+      newItemName: '',
+      newItemPrice: 0,
       categories: [
         { id: 'groceries', name: 'Groceries' },
         { id: 'business', name: 'Business' },
@@ -166,20 +191,33 @@ export default {
         })
       }
     },
-    showAddItemDialog() {
-      const name = prompt('Enter item name:')
-      const price = prompt('Enter item price (PHP):')
-      
-      if (name && price && !isNaN(price)) {
+    toggleAddForm() {
+      this.showAddForm = !this.showAddForm
+      if (this.showAddForm) {
+        this.newItemName = ''
+        this.newItemPrice = 0
+      }
+    },
+    addNewItem() {
+      if (this.newItemName.trim() && this.newItemPrice > 0) {
         const newItem = {
           id: Date.now(),
-          name: name,
-          price: parseInt(price),
+          name: this.newItemName.trim(),
+          price: this.newItemPrice,
           fillPercentage: 0
         }
         this.items[this.selectedCategory].push(newItem)
         this.updateBudgetVisualization()
+        this.cancelAddForm()
+        this.$nextTick(() => {
+          this.initializeSortable()
+        })
       }
+    },
+    cancelAddForm() {
+      this.showAddForm = false
+      this.newItemName = ''
+      this.newItemPrice = 0
     }
   },
   watch: {
