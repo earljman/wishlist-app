@@ -17,12 +17,11 @@
       <div class="budget-input-wrapper">
         <span class="budget-label">Budget:</span>
         <input 
-          v-model.number="budget" 
-          type="number" 
+          :value="budgetFormatted" 
+          type="text" 
           class="budget-input-combined"
-          @input="updateBudgetVisualization"
+          @input="handleBudgetInput"
         >
-        <span class="budget-formatted">₱{{ budget.toLocaleString() }}</span>
       </div>
     </div>
 
@@ -220,6 +219,18 @@ export default {
       this.showAddForm = false
       this.newItemName = ''
       this.newItemPrice = 0
+    },
+    handleBudgetInput(event) {
+      const value = event.target.value.replace(/[^\d]/g, '')
+      if (value) {
+        this.budget = parseInt(value)
+        this.updateBudgetVisualization()
+      }
+    }
+  },
+  computed: {
+    budgetFormatted() {
+      return '₱' + this.budget.toLocaleString()
     }
   },
   watch: {
