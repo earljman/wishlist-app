@@ -70,11 +70,11 @@ body {
   border: 1px solid #268bd2;
 }
 
-/* Main content grid with no spacing between sections */
+/* Main content grid with spacing between sections */
 .main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
+  gap: 16px;
   margin-bottom: 16px;
 }
 
@@ -211,6 +211,7 @@ body {
   font-size: 16px;
   font-weight: 500;
   color: #657b83;
+  flex-shrink: 0;
 }
 
 .budget-input-combined {
@@ -221,8 +222,8 @@ body {
   font-weight: 600;
   color: #16a34a;
   text-align: right;
-  flex: 1;
-  margin-left: 16px;
+  min-width: 120px;
+  padding: 0 4px;
 }
 
 .budget-input-combined:focus {
