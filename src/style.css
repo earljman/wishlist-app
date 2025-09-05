@@ -159,7 +159,6 @@ body {
   opacity: 0.5;
   background: #eee8d5 !important;
   border: 2px dashed #268bd2 !important;
-  transform: rotate(2deg);
 }
 
 /* Subtle progress indicator */
