@@ -183,6 +183,11 @@ export default {
         Sortable.create(this.$refs.itemsList, {
           animation: 150,
           ghostClass: 'sortable-ghost',
+          forceFallback: true,
+          fallbackTolerance: 3,
+          touchStartThreshold: 0,
+          delay: 100,
+          delayOnTouchStart: true,
           onEnd: (evt) => {
             const items = this.getCurrentCategoryItems()
             const item = items.splice(evt.oldIndex, 1)[0]
