@@ -70,11 +70,11 @@ body {
   border: 1px solid #268bd2;
 }
 
-/* Main content grid with reduced spacing */
+/* Main content grid with no spacing between sections */
 .main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 0;
   margin-bottom: 16px;
 }
 
@@ -118,19 +118,25 @@ body {
 .wishlist-items {
   max-height: 280px;
   overflow-y: auto;
+  margin: 0 -16px;
+  padding: 0;
 }
 
 /* Simplified list items with thin separators */
 .wishlist-item {
   position: relative;
   background: #fdf6e3;
-  border: 1px solid #ddd6c1;
-  border-radius: 2px;
-  padding: 10px;
-  margin-bottom: 6px;
+  border-top: 1px solid #ddd6c1;
+  border-radius: 0;
+  padding: 10px 16px;
+  margin-bottom: 0;
   cursor: pointer;
   transition: all 0.15s ease;
   overflow: hidden;
+}
+
+.wishlist-item:last-child {
+  border-bottom: 1px solid #ddd6c1;
 }
 
 .wishlist-item:hover {
@@ -149,8 +155,8 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(90deg, #859900, #859900);
-  opacity: 0.15;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  opacity: 0.2;
   transition: width 0.5s ease;
 }
 
@@ -208,7 +214,7 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
-  color: #859900;
+  color: #16a34a;
   border-top: 1px solid #ddd6c1;
   padding-top: 8px;
 }
@@ -266,9 +272,9 @@ body {
 }
 
 .btn-add {
-  background: #859900;
+  background: #22c55e;
   color: #fdf6e3;
-  border: 1px solid #859900;
+  border: 1px solid #22c55e;
   border-radius: 2px;
   padding: 8px 12px;
   font-size: 14px;
@@ -279,8 +285,8 @@ body {
 }
 
 .btn-add:hover {
-  background: #6d7800;
-  border-color: #6d7800;
+  background: #16a34a;
+  border-color: #16a34a;
 }
 
 .btn-cancel {
