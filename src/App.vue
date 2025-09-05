@@ -104,6 +104,7 @@ export default {
       showAddForm: false,
       newItemName: '',
       newItemPrice: 0,
+      sortableInstance: null,
       categories: [
         { id: 'groceries', name: 'Groceries' },
         { id: 'business', name: 'Business' },
@@ -143,6 +144,13 @@ export default {
       this.selectedItem = this.getCurrentCategoryItems()[0]
     }
   },
+  beforeUnmount() {
+    // Clean up sortable instance when component is destroyed
+    if (this.sortableInstance) {
+      this.sortableInstance.destroy()
+      this.sortableInstance = null
+    }
+  },
   methods: {
     selectCategory(categoryId) {
       this.selectedCategory = categoryId
@@ -179,8 +187,14 @@ export default {
       })
     },
     initializeSortable() {
+      // Destroy existing sortable instance if it exists
+      if (this.sortableInstance) {
+        this.sortableInstance.destroy()
+        this.sortableInstance = null
+      }
+      
       if (this.$refs.itemsList) {
-        Sortable.create(this.$refs.itemsList, {
+        this.sortableInstance = Sortable.create(this.$refs.itemsList, {
           animation: 150,
           ghostClass: 'sortable-ghost',
           forceFallback: true,
